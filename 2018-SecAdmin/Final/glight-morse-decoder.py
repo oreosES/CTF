@@ -36,7 +36,8 @@ while cap.isOpened():
     eroded = cv2.erode(bwise, None, iterations=2)
     dilated = cv2.dilate(eroded, None, iterations=8)
     pixels = [item for sublist in dilated for item in sublist]
-    cv2.imshow('image',dilated)
+    vis = np.concatenate((G,dilated), axis=1)
+    cv2.imshow('image',vis)
     sumarea = sum(pixels)
     if state == (sumarea > area):
         count = count+1
